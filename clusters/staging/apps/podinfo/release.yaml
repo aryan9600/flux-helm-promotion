@@ -5,6 +5,7 @@ metadata:
   namespace: podinfo
 spec:
   interval: 60m
+  provider: azure
   chart:
     spec:
       chart: podinfo
