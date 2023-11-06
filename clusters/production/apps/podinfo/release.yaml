@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: podinfo
+  namespace: podinfo
+spec:
+  interval: 60m
+  chart:
+    spec:
+      chart: podinfo
+      version: "6.1.1" # automatically upgrade to the latest version
+      interval: 5m # scan the Helm repository every five minutes
+      sourceRef:
+        kind: HelmRepository
+        name: podinfo
+  test:
+    enable: true # run tests on upgrades
