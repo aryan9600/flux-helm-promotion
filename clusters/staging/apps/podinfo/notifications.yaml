@@ -1,0 +1,29 @@
+apiVersion: notification.toolkit.fluxcd.io/v1beta2
+kind: Provider
+metadata:
+  name: github
+  namespace: podinfo
+spec:
+  type: githubdispatch
+  address: https://github.com/aryan9600/flux-helm-promotion
+  secretRef:
+    name: github-token
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta2
+kind: Alert
+metadata:
+  name: podinfo-dispatch
+  namespace: podinfo
+spec:
+  providerRef:
+    name: github
+  summary: "Trigger promotion"
+  eventMetadata:
+    env: staging
+    cluster: staging
+  eventSeverity: info
+  eventSources:
+    - kind: HelmRelease
+      name: podinfo
+  inclusionList:
+    - ".*.upgrade.*succeeded.*"
