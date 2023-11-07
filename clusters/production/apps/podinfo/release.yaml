@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: podinfo
-      version: "7.0.1" # automatically upgrade to the latest version
+      version: "7.0.2" # automatically upgrade to the latest version
       interval: 5m # scan the Helm repository every five minutes
       sourceRef:
         kind: HelmRepository
