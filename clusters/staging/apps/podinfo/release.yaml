@@ -13,5 +13,10 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: podinfo
+      verify:
+        provider: cosign
+        matchOIDCIdentity:
+          - issuer: "^https://token.actions.githubusercontent.com$"
+            subject: "^https://github.com/aryan9600/podinfo.*$"
   test:
     enable: true # run tests on upgrades
